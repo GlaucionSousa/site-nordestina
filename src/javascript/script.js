@@ -97,6 +97,74 @@ $(document).ready(function () {
       });
     });
 
+  // Função para exibir as avaliações na página principal
+  function renderTestimonials(reviews, limit) {
+    const container = $("#testimonials-container");
+    container.empty();
+
+    const sortedReviews = reviews.sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
+    const reviewsToDisplay = limit
+      ? sortedReviews.slice(0, limit)
+      : sortedReviews;
+
+    if (reviewsToDisplay.length === 0) {
+      container.html(
+        '<p class="text-center">Ainda não há avaliações. Seja o primeiro a nos avaliar!</p>'
+      );
+      return;
+    }
+
+    reviewsToDisplay.forEach((review) => {
+      const stars = "★".repeat(review.rating) + "☆".repeat(5 - review.rating);
+      const testimonialCard = `
+        <div class="col-md-6 col-lg-4">
+          <div class="card testimonial-card h-100 border-0 shadow">
+            <div class="card-body">
+              <div class="rating mb-3">
+                ${stars
+                  .split("")
+                  .map(
+                    (s) =>
+                      `<i class="fas fa-star" style="color: ${
+                        s === "★" ? "#ffc107" : "#6c757d"
+                      };"></i>`
+                  )
+                  .join("")}
+              </div>
+              <p class="card-text fst-italic">"${review.message}"</p>
+              <div class="d-flex align-items-center mt-3">
+                <div class="bg-primary-custom rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                  <span class="text-white fw-bold">${review.name
+                    .charAt(0)
+                    .toUpperCase()}${
+        review.company ? review.company.charAt(0).toUpperCase() : ""
+      }</span>
+                </div>
+                <div>
+                  <h5 class="mb-0">${review.name}</h5>
+                  ${
+                    review.company
+                      ? `<small class="text-muted">${review.company}</small>`
+                      : ""
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      container.append(testimonialCard);
+    });
+  }
+
+  // Carregar avaliações do localStorage
+  function loadAndRenderReviews() {
+    let reviews = JSON.parse(localStorage.getItem("nordestinaReviews") || "[]");
+    renderTestimonials(reviews, 3); // Exibe as 3 avaliações mais recentes na página principal
+  }
+
   // Formulário de avaliação
   $("#reviewForm").on("submit", function (e) {
     e.preventDefault();
@@ -109,19 +177,70 @@ $(document).ready(function () {
       date: new Date().toISOString(),
     };
 
-    // Salvar no localStorage (em produção, enviar para o servidor)
     let reviews = JSON.parse(localStorage.getItem("nordestinaReviews") || "[]");
     reviews.push(reviewData);
     localStorage.setItem("nordestinaReviews", JSON.stringify(reviews));
 
-    // Mensagem de sucesso
     alert("Avaliação enviada com sucesso! Obrigado pelo feedback.");
 
-    // Fechar modal e limpar formulário
     $("#reviewModal").modal("hide");
     $("#reviewForm")[0].reset();
     $("#ratingValue").val(0);
     $(".star").html("☆").css("color", "#6c757d");
+
+    loadAndRenderReviews(); // Atualiza a lista de avaliações na página
+  });
+
+  // Modal para exibir todas as avaliações
+  $("#allReviewsModal").on("show.bs.modal", function () {
+    const allReviews = JSON.parse(
+      localStorage.getItem("nordestinaReviews") || "[]"
+    );
+    const sortedReviews = allReviews.sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
+    const container = $("#all-reviews-container");
+    container.empty();
+
+    if (sortedReviews.length === 0) {
+      container.html('<p class="text-center">Ainda não há avaliações.</p>');
+      return;
+    }
+
+    sortedReviews.forEach((review) => {
+      const stars = "★".repeat(review.rating) + "☆".repeat(5 - review.rating);
+      const formattedDate = new Date(review.date).toLocaleDateString("pt-BR");
+      const reviewCard = `
+        <div class="card testimonial-card h-100 border-0 shadow-sm mb-4">
+          <div class="card-body">
+            <div class="rating mb-2">
+              ${stars
+                .split("")
+                .map(
+                  (s) =>
+                    `<i class="fas fa-star" style="color: ${
+                      s === "★" ? "#ffc107" : "#6c757d"
+                    };"></i>`
+                )
+                .join("")}
+            </div>
+            <p class="card-text fst-italic mb-2">"${review.message}"</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <h5 class="mb-0">${review.name}</h5>
+                ${
+                  review.company
+                    ? `<small class="text-muted">${review.company}</small>`
+                    : ""
+                }
+              </div>
+              <small class="text-muted">${formattedDate}</small>
+            </div>
+          </div>
+        </div>
+      `;
+      container.append(reviewCard);
+    });
   });
 
   // Mostrar balão de boas-vindas após 2 segundos
@@ -321,4 +440,7 @@ $(document).ready(function () {
       $(".navbar").removeClass("scrolled");
     }
   });
+
+  // Chamar a função para carregar as avaliações quando o documento estiver pronto
+  loadAndRenderReviews();
 });

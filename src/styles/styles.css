@@ -471,3 +471,15 @@ textarea:focus {
 .modal.show .modal-dialog {
   transform: translate(0, 0);
 }
+
+/* Adicionar para alinhar ícones e texto no rodapé */
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Ajuste o espaçamento entre o ícone e o texto */
+}
+
+.footer-contact-item i {
+  /* Opcional: ajustar tamanho do ícone */
+  font-size: 1rem;
+}
