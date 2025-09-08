@@ -15,7 +15,7 @@
 }
 
 body {
-  background-color: var(--light-color);
+  background-color: var(--secondary-color);
   padding-top: 76px; /* Altura reduzida da navbar fixa */
   scroll-behavior: smooth;
 }
@@ -184,7 +184,7 @@ body {
 
 .swiper-button-next,
 .swiper-button-prev {
-  color: var(--primary-color);
+  color: var(--dark-color);
 }
 
 .swiper-pagination-bullet-active {
@@ -198,6 +198,7 @@ body {
   overflow: hidden;
   transition: all 0.3s ease;
   height: 100%;
+  background-color: var(--secondary-color);
 }
 
 .nutrition-tip-card:hover {
