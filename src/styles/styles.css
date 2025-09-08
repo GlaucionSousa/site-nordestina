@@ -1,0 +1,472 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+:root {
+  --primary-color: #e16b3a;
+  --secondary-color: #ffe8b4;
+  --dark-color: #1d1d1d;
+  --light-color: #fff9ea;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--light-color);
+  padding-top: 76px; /* Altura reduzida da navbar fixa */
+  scroll-behavior: smooth;
+}
+
+/* Navbar com altura reduzida */
+.navbar {
+  transition: all 0.3s ease;
+  padding: 0.5rem 0;
+}
+
+.navbar-brand img {
+  width: 150px;
+  height: auto;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: var(--dark-color);
+  position: relative;
+  margin: 0 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  color: var(--primary-color);
+}
+
+/* Botões personalizados */
+.btn-primary-custom {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary-custom:hover {
+  background-color: #c55a2f;
+  border-color: #c55a2f;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-outline-primary-custom {
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-primary-custom:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Hero Section */
+#home {
+  position: relative;
+  overflow: hidden;
+}
+
+.min-vh-75 {
+  min-height: 75vh;
+}
+
+.shape-bg {
+  background-color: var(--secondary-color);
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  border-radius: 40% 30% 0% 20%;
+  top: 10%;
+  right: 0;
+  z-index: 0;
+}
+
+.z-index-1 {
+  z-index: 1;
+}
+
+.display-4 {
+  font-weight: 700;
+  color: var(--dark-color);
+}
+
+.text-primary-custom {
+  color: var(--primary-color) !important;
+}
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 40px;
+  background-color: white;
+  font-size: 1.25rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--primary-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  color: var(--primary-color);
+}
+
+/* Cards de serviços */
+.service-card {
+  transition: all 0.3s ease;
+  border: none;
+  overflow: hidden;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Galeria com Swiper */
+.gallerySwiper {
+  padding: 20px 0 50px;
+}
+
+.gallery-item {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--primary-color);
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--primary-color);
+}
+
+/* Dicas nutricionais */
+.nutrition-tip-card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.nutrition-tip-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.nutrition-tip-card .card-body {
+  padding: 1.5rem;
+}
+
+/* Depoimentos */
+.testimonial-card {
+  transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+}
+
+.rating {
+  color: #ffc107;
+}
+
+/* Formulário */
+.bg-primary-custom {
+  background-color: var(--primary-color) !important;
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(225, 107, 58, 0.25);
+}
+
+/* Footer */
+.bg-dark {
+  background-color: var(--dark-color) !important;
+}
+
+/* Balão de boas-vindas */
+.welcome-bubble {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  background: white;
+  border-radius: 20px;
+  padding: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  max-width: 250px;
+  z-index: 1000;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.welcome-bubble.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.welcome-bubble:after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  right: 30px;
+  border-width: 10px 10px 0;
+  border-style: solid;
+  border-color: white transparent;
+}
+
+.welcome-bubble p {
+  margin: 0;
+  color: var(--dark-color);
+  font-size: 0.9rem;
+}
+
+.close-bubble {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #6c757d;
+}
+
+/* Botão flutuante do WhatsApp */
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 30px;
+  right: 30px;
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  background-color: #128c7e;
+  transform: scale(1.1);
+  color: white;
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease forwards;
+}
+
+.slide-in {
+  animation: slideIn 0.8s ease forwards;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 992px) {
+  .display-4 {
+    font-size: 2.5rem;
+  }
+
+  .shape-bg {
+    width: 100%;
+    height: 50%;
+    border-radius: 30% 30% 0 0;
+  }
+
+  .navbar-nav {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 68px;
+  }
+
+  .display-4 {
+    font-size: 2rem;
+  }
+
+  .btn-lg {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+  }
+
+  #home .row {
+    text-align: center;
+  }
+
+  .social-media-buttons {
+    justify-content: center;
+  }
+
+  .gallery-item img {
+    height: 250px;
+  }
+}
+
+/* Acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Foco visível para acessibilidade */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Estilos para o sistema de avaliação */
+.rating-input {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.rating-input .star {
+  transition: all 0.2s ease;
+  margin-right: 5px;
+}
+
+.rating-input .star:hover {
+  transform: scale(1.2);
+}
+
+/* Modal personalizado */
+.modal-content {
+  border-radius: 12px;
+  border: none;
+}
+
+.modal-header {
+  border-bottom: 1px solid #e9ecef;
+  background-color: #f8f9fa;
+  border-radius: 12px 12px 0 0;
+}
+
+/* Botão de fechar personalizado */
+.btn-close:focus {
+  box-shadow: 0 0 0 0.2rem rgba(225, 107, 58, 0.25);
+}
+
+/* Estilos para os modais de política */
+.modal-body h6 {
+  color: var(--primary-color);
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal-body p,
+.modal-body ul {
+  margin-bottom: 1rem;
+}
+
+.modal-body ul {
+  padding-left: 1.5rem;
+}
+
+/* Ajustes responsivos para modais */
+@media (max-width: 768px) {
+  .modal-dialog {
+    margin: 1rem;
+  }
+
+  .rating-input {
+    font-size: 1.5rem;
+  }
+}
+
+/* Animações para modais */
+.modal.fade .modal-dialog {
+  transform: translate(0, -50px);
+  transition: transform 0.3s ease-out;
+}
+
+.modal.show .modal-dialog {
+  transform: translate(0, 0);
+}
