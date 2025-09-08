@@ -483,3 +483,17 @@ textarea:focus {
   /* Opcional: ajustar tamanho do ícone */
   font-size: 1rem;
 }
+
+/* Dentro da seção #home ou específica para a imagem hero */
+#home .position-relative img {
+  width: 100%;
+  height: 100%; /* Garante que a imagem tente preencher o espaço disponível */
+  object-fit: cover; /* Ajusta a imagem para cobrir a área, cortando se necessário */
+  object-position: center; /* Centraliza a imagem no espaço */
+}
+
+/* Ou, se a imagem original já está bem posicionada, apenas ajuste o tamanho */
+#home .position-relative img {
+  width: 100%;
+  height: auto; /* Mantém a proporção e se ajusta à largura */
+}
