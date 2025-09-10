@@ -26,28 +26,55 @@ $(document).ready(function () {
     },
   });
 
-  // Inicializar Cookie Consent
-  window.cookieconsent.initialise({
-    palette: {
-      popup: {
-        background: "#1d1d1d",
-        text: "#ffffff",
-      },
-      button: {
-        background: "#e16b3a",
-        text: "#ffffff",
-      },
-    },
-    theme: "classic",
-    position: "bottom-left",
-    content: {
-      message: "Este site utiliza cookies para melhorar sua experiência.",
-      dismiss: "Entendi",
-      link: "Saiba mais",
-      href: "#",
-      policy: "Política de Cookies",
-    },
+  // Acessibilidade para setas do Swiper
+  $(".swiper-button-next").attr("aria-label", "Próxima imagem");
+  $(".swiper-button-prev").attr("aria-label", "Imagem anterior");
+
+  // Funcionalidade do Modal Lightbox da Galeria
+  var modal = $("#lightboxModal");
+  var modalImg = $("#lightboxImage");
+  var captionText = $("#lightboxCaption");
+
+  $(".gallery-image-clickable").on("click", function () {
+    modal.css("display", "block");
+    modalImg.attr("src", $(this).attr("src"));
+    captionText.html($(this).attr("alt"));
   });
+
+  $(".close-lightbox").on("click", function () {
+    modal.css("display", "none");
+  });
+
+  $(window).on("click", function (event) {
+    if ($(event.target).is(modal)) {
+      modal.css("display", "none");
+    }
+  });
+
+  // Inicializar Cookie Consent
+  if (window.cookieconsent) {
+    window.cookieconsent.initialise({
+      palette: {
+        popup: {
+          background: "#1d1d1d",
+          text: "#ffffff",
+        },
+        button: {
+          background: "#e16b3a",
+          text: "#ffffff",
+        },
+      },
+      theme: "classic",
+      position: "bottom-left",
+      content: {
+        message: "Este site utiliza cookies para melhorar sua experiência.",
+        dismiss: "Entendi",
+        link: "Saiba mais",
+        href: "#",
+        policy: "Política de Cookies",
+      },
+    });
+  }
 
   // Efeito hover para itens do menu
   $(".nav-link").hover(
@@ -164,6 +191,7 @@ $(document).ready(function () {
     let reviews = JSON.parse(localStorage.getItem("nordestinaReviews") || "[]");
     renderTestimonials(reviews, 3); // Exibe as 3 avaliações mais recentes na página principal
   }
+  loadAndRenderReviews();
 
   // Formulário de avaliação
   $("#reviewForm").on("submit", function (e) {
@@ -172,7 +200,7 @@ $(document).ready(function () {
     const reviewData = {
       name: $("#reviewerName").val(),
       company: $("#reviewerCompany").val(),
-      rating: $("#ratingValue").val(),
+      rating: Number($("#ratingValue").val()) || 0,
       message: $("#reviewMessage").val(),
       date: new Date().toISOString(),
     };
@@ -264,7 +292,6 @@ $(document).ready(function () {
       var position = $(this).offset().top;
       var scroll = $(window).scrollTop();
       var windowHeight = $(window).height();
-
       if (scroll > position - windowHeight + 200) {
         $(this).addClass("active");
       }
@@ -274,7 +301,6 @@ $(document).ready(function () {
   // Formulário de orçamento
   $("#budgetForm").on("submit", function (e) {
     e.preventDefault();
-
     // Mostrar modal de confirmação do Bootstrap
     var confirmationModal = new bootstrap.Modal(
       document.getElementById("confirmationModal")
@@ -282,165 +308,256 @@ $(document).ready(function () {
     confirmationModal.show();
   });
 
-  // Confirmar envio do formulário
+  // Adicionar comportamento para o botão de confirmação (se existir)
   $("#confirmSend").on("click", function () {
-    // Fechar modal
     var confirmationModal = bootstrap.Modal.getInstance(
       document.getElementById("confirmationModal")
     );
-    confirmationModal.hide();
+    if (confirmationModal) confirmationModal.hide();
 
-    // Mostrar loading
-    $("#formLoading").show();
-    $("#budgetForm button").prop("disabled", true);
-
-    // Coletar dados do formulário
-    const formData = {
-      name: $("#name").val(),
-      company: $("#company").val(),
-      phone: $("#phone").val(),
-      email: $("#email").val(),
-      people: $("#people").val(),
-      message: $("#message").val(),
-    };
-
-    // Simular envio (substituir por API real)
     setTimeout(function () {
-      // Esconder loading
-      $("#formLoading").hide();
-      $("#budgetForm button").prop("disabled", false);
-
-      // Mensagem de sucesso
+      $("#budgetForm")[0].reset();
       showFormMessage(
-        "Solicitação enviada com sucesso! Entraremos em contato em breve.",
+        "Sua solicitação foi enviada com sucesso! Em breve retornaremos o contato.",
         "success"
       );
-
-      // Preparar mensagem para WhatsApp
-      const whatsappMessage = `Olá! Gostaria de solicitar um orçamento:%0A%0A*Nome:* ${formData.name}%0A*Empresa:* ${formData.company}%0A*Telefone:* ${formData.phone}%0A*E-mail:* ${formData.email}%0A*Número de pessoas:* ${formData.people}%0A*Mensagem:* ${formData.message}`;
-
-      // Abrir WhatsApp
-      window.open(
-        `https://wa.me/5581996482736?text=${whatsappMessage}`,
-        "_blank"
-      );
-
-      // Limpar formulário
-      $("#budgetForm")[0].reset();
-    }, 2000);
+    }, 500);
   });
 
-  // Carregar dicas nutricionais em tempo real com renovação a cada 2 dias
-  function loadNutritionTips() {
-    const lastLoadDate = localStorage.getItem("nutritionTipsLastLoad");
-    const now = new Date().getTime();
-    const twoDays = 2 * 24 * 60 * 60 * 1000; // 2 dias em milissegundos
-
-    // Verificar se precisa renovar as dicas
-    if (!lastLoadDate || now - lastLoadDate > twoDays) {
-      localStorage.setItem("nutritionTipsLastLoad", now);
-
-      // Dicas que serão renovadas a cada 2 dias
-      const tips = [
-        {
-          title: "Benefícios dos Alimentos Regionais",
-          content:
-            "Nossos pratos utilizam ingredientes regionais frescos, ricos em nutrientes essenciais para uma alimentação balanceada.",
-        },
-        {
-          title: "Hidratação no Trabalho",
-          content:
-            "Além das refeições, oferecemos sucos naturais para manter sua equipe hidratada e produtiva durante o dia.",
-        },
-        {
-          title: "Variedade de Cardápio",
-          content:
-            "Nosso cardápio é elaborado por nutricionistas para oferecer variedade e equilíbrio nutricional todas as semanas.",
-        },
-        {
-          title: "Importância das Proteínas",
-          content:
-            "Nossas refeições são ricas em proteínas para garantir energia e recuperação muscular aos trabalhadores.",
-        },
-        {
-          title: "Carboidratos de Qualidade",
-          content:
-            "Utilizamos carboidratos complexos que fornecem energia de liberação lenta para o dia todo.",
-        },
-        {
-          title: "Vitaminas e Minerais",
-          content:
-            "Nossos pratos são preparados com vegetais frescos que fornecem vitaminas e minerais essenciais.",
-        },
-      ];
-
-      // Embaralhar as dicas para variedade
-      const shuffledTips = [...tips]
-        .sort(() => 0.5 - Math.random())
-        .slice(0, 3);
-      localStorage.setItem("nutritionTips", JSON.stringify(shuffledTips));
-    }
-
-    // Carregar dicas do localStorage
-    const storedTips = JSON.parse(
-      localStorage.getItem("nutritionTips") || "[]"
-    );
-
-    let tipsHTML = "";
-    storedTips.forEach((tip, index) => {
-      tipsHTML += `
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card nutrition-tip-card shadow border-0 h-100">
-            <div class="card-body">
-              <h4 class="h5">${tip.title}</h4>
-              <p class="mb-0">${tip.content}</p>
-            </div>
-          </div>
-        </div>
-      `;
-    });
-
-    $("#nutrition-tips").html(tipsHTML);
-  }
-
-  // Carregar dicas quando a página estiver pronta
-  loadNutritionTips();
-
-  // Função para mostrar mensagens no formulário
+  // Função utilitária para mensagens de formulário
   function showFormMessage(message, type) {
-    // Criar elemento de mensagem se não existir
     if ($("#formMessage").length === 0) {
       $("<div>")
         .attr("id", "formMessage")
         .addClass("alert")
         .insertBefore("#budgetForm");
     }
-
     const messageDiv = $("#formMessage");
     messageDiv
       .removeClass("alert-success alert-danger")
       .addClass("alert-" + (type === "success" ? "success" : "danger"))
       .text(message)
       .fadeIn();
-
-    // Esconder mensagem após 5 segundos
     setTimeout(function () {
       messageDiv.fadeOut();
     }, 5000);
   }
 
-  // Inicializar animações
+  // Lista completa de Dicas Nutricionais
+  const nutritionTips = [
+    {
+      title: "O segredo para um bom dia: café da manhã reforçado!",
+      content:
+        "Uma alimentação rica em carboidratos e proteínas logo pela manhã garante a energia necessária para o resto do dia. Não pule essa refeição!",
+    },
+    {
+      title: "Mantenha-se hidratado, por dentro e por fora.",
+      content:
+        "A água é fundamental para o transporte de nutrientes, a regulação da temperatura e a manutenção da hidratação da pele. Beba água regularmente.",
+    },
+    {
+      title: "Coma com calma e saboreie o momento.",
+      content:
+        "Mastigar bem os alimentos não só ajuda na digestão, mas também na sensação de saciedade. Desfrute de cada mordida sem pressa.",
+    },
+    {
+      title: "Inclua mais vegetais coloridos no prato.",
+      content:
+        "Os vegetais de cores variadas são ricos em vitaminas e antioxidantes, essenciais para fortalecer seu sistema imunológico e manter a saúde em dia.",
+    },
+    {
+      title: "Lanches inteligentes: a chave para a energia constante.",
+      content:
+        "Opte por lanches saudáveis entre as refeições principais, como frutas, oleaginosas ou iogurte, para evitar a fome excessiva e manter o foco.",
+    },
+    {
+      title: "Menos sal e mais sabor natural.",
+      content:
+        "Reduzir o consumo de sal ajuda a controlar a pressão arterial. Prefira temperos naturais como ervas, alho e especiarias para dar mais sabor à sua comida.",
+    },
+    {
+      title: "Variedade é o tempero da vida e da dieta.",
+      content:
+        "Experimente diferentes tipos de grãos, proteínas e vegetais. Uma dieta variada garante que você obtenha todos os nutrientes que seu corpo precisa.",
+    },
+    {
+      title: "Durma bem para comer melhor.",
+      content:
+        "A privação do sono afeta os hormônios que regulam o apetite, podendo levar a escolhas alimentares ruins. Garanta uma boa noite de sono para ter mais controle.",
+    },
+    {
+      title: "Fibras: o caminho para uma digestão saudável.",
+      content:
+        "Alimentos ricos em fibras, como grãos integrais, frutas e vegetais, melhoram o trânsito intestinal e ajudam a manter a sensação de saciedade por mais tempo.",
+    },
+    {
+      title: "Não ignore a fome emocional, mas aprenda a lidar com ela.",
+      content:
+        "Reconheça a diferença entre fome física e emocional. Encontre alternativas saudáveis para lidar com o estresse e a ansiedade que não envolvam comida.",
+    },
+    {
+      title: "Proteínas: construindo e reparando seu corpo.",
+      content:
+        "Inclua proteínas magras em suas refeições, como frango, peixe, ovos ou leguminosas. Elas são essenciais para a construção muscular e a recuperação.",
+    },
+    {
+      title: "O café da manhã é o combustível do cérebro.",
+      content:
+        "Iniciar o dia com uma refeição nutritiva melhora a concentração, a memória e o desempenho no trabalho. Não saia de casa sem se alimentar!",
+    },
+    {
+      title: "Leia os rótulos dos alimentos.",
+      content:
+        "Ficar atento à composição dos alimentos industrializados ajuda a evitar o excesso de açúcares, gorduras e sódio. Escolha produtos mais saudáveis.",
+    },
+    {
+      title: "Coma frutas, a sobremesa da natureza.",
+      content:
+        "As frutas são ricas em vitaminas, minerais e fibras, além de serem uma opção natural e doce para matar a vontade de comer algo gostoso e saudável.",
+    },
+    {
+      title: "Exercite-se e coma bem para viver melhor.",
+      content:
+        "A atividade física regular, combinada a uma boa alimentação, é a fórmula perfeita para uma vida mais longa e saudável. Movimente-se!",
+    },
+    {
+      title: "A cor do prato importa.",
+      content:
+        "Monte um prato bem colorido, com vegetais de diferentes tonalidades. Isso garante que você está consumindo uma variedade de nutrientes essenciais.",
+    },
+    {
+      title: "Evite o consumo de refrigerantes e sucos industrializados.",
+      content:
+        "Essas bebidas são ricas em açúcar e calorias vazias. Prefira água ou sucos naturais para se manter hidratado e saudável.",
+    },
+    {
+      title: "Ajuste o tamanho das porções.",
+      content:
+        "Comer porções menores e mais frequentes ao longo do dia pode ajudar a manter o metabolismo ativo e evitar picos de glicose.",
+    },
+    {
+      title: "Lembre-se da importância das gorduras boas.",
+      content:
+        "Inclua em sua dieta fontes de gorduras saudáveis, como abacate, azeite de oliva e peixes ricos em ômega-3, essenciais para a saúde do cérebro e do coração.",
+    },
+    {
+      title: "Cozinhe em casa mais vezes.",
+      content:
+        "Preparar suas próprias refeições permite que você controle os ingredientes, a quantidade de sal e gordura, garantindo uma alimentação mais saudável e fresca.",
+    },
+    {
+      title: "Alergias e intolerâncias: fique atento aos sinais.",
+      content:
+        "Se você sentir desconforto após certas refeições, procure a ajuda de um profissional. Reconhecer e lidar com alergias ou intolerâncias é crucial para a saúde.",
+    },
+    {
+      title: "Priorize o consumo de grãos integrais.",
+      content:
+        "Arroz, pães e massas integrais são ricos em fibras e nutrientes, proporcionando mais energia e saciedade do que suas versões refinadas.",
+    },
+    {
+      title: "Planeje lanches saudáveis para a semana.",
+      content:
+        "Ter lanches como frutas e castanhas por perto evita que você recorra a opções menos nutritivas quando a fome apertar.",
+    },
+    {
+      title: "Não faça dieta, mude seu estilo de vida.",
+      content:
+        "Em vez de dietas restritivas, adote hábitos alimentares saudáveis e sustentáveis. A consistência é a chave para o sucesso a longo prazo.",
+    },
+    {
+      title: "Ouça seu corpo e respeite a fome e a saciedade.",
+      content:
+        "Aprenda a identificar os sinais de fome e de saciedade do seu corpo. Coma quando estiver com fome e pare quando estiver satisfeito.",
+    },
+    {
+      title: "Aposte em fontes de cálcio.",
+      content:
+        "Leite, iogurte e queijo são essenciais para a saúde dos ossos, mas vegetais como brócolis e couve também são boas fontes de cálcio.",
+    },
+    {
+      title: "O poder das leguminosas.",
+      content:
+        "Feijão, lentilha e grão de bico são excelentes fontes de proteína e fibras. São versáteis e podem ser incluídos em várias receitas.",
+    },
+    {
+      title: "Beba chá: uma forma de se aquecer e se hidratar.",
+      content:
+        "Chás de ervas podem ser uma ótima opção para se manter hidratado e aproveitar os benefícios de plantas como camomila, hortelã e gengibre.",
+    },
+    {
+      title: "Reduza o consumo de alimentos processados.",
+      content:
+        "Alimentos processados são geralmente ricos em sódio, açúcar e gorduras não saudáveis. Prefira alimentos frescos e naturais sempre que possível.",
+    },
+    {
+      title: "Não se sinta culpado por comer o que gosta.",
+      content:
+        "A moderação é a chave. Aproveite suas comidas favoritas com equilíbrio, sem exageros, para manter uma relação saudável com a alimentação.",
+    },
+  ];
+
+  // Função para calcular o dia do ano
+  function getDayOfYear(date) {
+    const start = new Date(date.getFullYear(), 0, 0);
+    const diff = date - start;
+    return Math.floor(diff / (1000 * 60 * 60 * 24));
+  }
+
+  // Função para carregar uma dica diferente a cada dia
+  function loadDailyTips() {
+    const today = new Date();
+    const dayOfYear = getDayOfYear(today);
+
+    // Seleciona 3 dicas consecutivas
+    const tips = [];
+    for (let i = 0; i < 3; i++) {
+      const index = (dayOfYear + i) % nutritionTips.length;
+      tips.push(nutritionTips[index]);
+    }
+
+    // Renderizar no container
+    const container = $("#nutrition-tips-container");
+    container.empty();
+
+    tips.forEach((tip) => {
+      const card = `
+      <div class="col-md-4">
+        <div class="card border-0 shadow nutrition-tip-card h-100">
+          <div class="card-body p-4">
+            <h3 class="h5 mb-3">${tip.title}</h3>
+            <p class="mb-0">${tip.content}</p>
+          </div>
+        </div>
+      </div>
+    `;
+      container.append(card);
+    });
+  }
+
+  // Chamar a função para carregar a dica do dia
+  loadDailyTips();
+
+  // Inicializar animações (primeiro disparo)
   $(window).trigger("scroll");
 
   // Adicionar classe de scrolled na navbar ao rolar
   $(window).scroll(function () {
-    if ($(window).scrollTop() > 50) {
+    if ($(this).scrollTop() > 50) {
       $(".navbar").addClass("scrolled");
     } else {
       $(".navbar").removeClass("scrolled");
     }
   });
 
-  // Chamar a função para carregar as avaliações quando o documento estiver pronto
-  loadAndRenderReviews();
+  // Animação de rolagem suave para âncoras
+  $('a[href^="#"]').on("click", function (e) {
+    e.preventDefault();
+    $("html, body").animate(
+      {
+        scrollTop: $(this.hash).offset().top - 70, // Ajuste para a altura da navbar
+      },
+      800
+    );
+  });
 });

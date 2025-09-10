@@ -12,7 +12,7 @@
     <meta name="author" content="Nordestina Refeições" />
     <meta
       property="og:title"
-      content="Nordestina Refeições - Transportando sabor em forma de  amor" />
+      content="Nordestina Refeições - Transportando sabor em forma de amor" />
     <meta
       property="og:description"
       content="Leve o autêntico sabor nordestino para sua empresa ou obra com refeições nutritivas e balanceadas." />
@@ -22,55 +22,38 @@
       property="og:image"
       content="https://www.nordestinarefeicoes.com.br/assets/images/logo-og.jpg" />
 
+    <!-- CSS frameworks / icons -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous" />
-
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
-
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer" />
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      crossorigin="anonymous" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <!-- Seu CSS local (coloque styles.css na mesma pasta que o index.html) -->
     <link rel="stylesheet" href="./src/styles/styles.css" />
+
+    <!-- jQuery (necessário para o script.js que usa jQuery) -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"></script>
-
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "FoodService",
-        "name": "Nordestina Refeições",
-        "image": "https://www.nordestinarefeicoes.com.br/assets/images/logo-Photoroom.png",
-        "description": "Serviço de alimentação para construção civil e empresas com o autêntico sabor nordestino",
-        "address": {
-          "@type": "PostalAddress",
-          "addressRegion": "PE",
-          "addressCountry": "BR"
-        },
-        "telephone": "+5581996482736",
-        "servesCuisine": "Nordestina",
-        "priceRange": "$$"
-      }
-    </script>
+      crossorigin="anonymous"></script>
 
     <title>Nordestina Refeições</title>
     <link rel="canonical" href="https://www.nordestinarefeicoes.com.br" />
   </head>
   <body>
+    <!-- NAVBAR -->
     <header>
       <nav
         class="navbar navbar-expand-lg navbar-light bg-white py-2 fixed-top shadow-sm">
@@ -123,6 +106,7 @@
     </header>
 
     <main id="content">
+      <!-- HERO -->
       <section id="home" class="pt-5 mt-5">
         <div class="container">
           <div class="row align-items-center min-vh-75 py-5">
@@ -133,7 +117,7 @@
                   A Nordestina Refeições nasceu da paixão pela culinária
                   nordestina e do desejo de fornecemos refeições de
                   <span class="text-primary-custom fw-bold">qualidade</span>
-                  para trabalhadores da construção civil e empresas de medio e
+                  para trabalhadores da construção civil e empresas de médio e
                   pequeno porte, levando o
                   <span class="text-primary-custom fw-bold">sabor</span>
                   nordestino em forma de
@@ -149,22 +133,19 @@
               </div>
             </div>
             <div class="col-lg-6 order-lg-2 order-1 mb-5 mb-lg-0">
-              <div class="position-relative">
+              <div class="position-relative hero-container">
                 <div class="shape-bg"></div>
                 <img
                   src="./assets/images/hero.png"
                   alt="Refeições Nordestinas"
-                  class="img-fluid position-relative z-index-1" />
-                <img
-                  src="./assets/images/hero-nordestina.jpg"
-                  alt="Refeições Nordestinas"
-                  class="img-fluid position-relative z-index-1" />
+                  class="img-fluid position-relative z-index-1 hero-image" />
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- SERVICES -->
       <section id="services" class="py-5 bg-light">
         <div class="container py-5">
           <h2 class="text-center mb-5 fw-bold display-5">Nossos Serviços</h2>
@@ -221,6 +202,7 @@
         </div>
       </section>
 
+      <!-- GALLERY (Swiper) -->
       <section id="gallery" class="py-5">
         <div class="container py-5">
           <h2 class="text-center mb-5 fw-bold display-5">Nossa Galeria</h2>
@@ -231,7 +213,7 @@
                   <img
                     src="./assets/images/1.webp"
                     alt="Prato Nordestino 1"
-                    class="img-fluid" />
+                    class="img-fluid gallery-image-clickable" />
                 </div>
               </div>
               <div class="swiper-slide">
@@ -239,7 +221,7 @@
                   <img
                     src="./assets/images/2.jpg"
                     alt="Prato Nordestino 2"
-                    class="img-fluid" />
+                    class="img-fluid gallery-image-clickable" />
                 </div>
               </div>
               <div class="swiper-slide">
@@ -247,7 +229,7 @@
                   <img
                     src="./assets/images/3.jpg"
                     alt="Prato Nordestino 3"
-                    class="img-fluid" />
+                    class="img-fluid gallery-image-clickable" />
                 </div>
               </div>
               <div class="swiper-slide">
@@ -255,7 +237,7 @@
                   <img
                     src="./assets/images/4.jpg"
                     alt="Prato Nordestino 4"
-                    class="img-fluid" />
+                    class="img-fluid gallery-image-clickable" />
                 </div>
               </div>
               <div class="swiper-slide">
@@ -263,43 +245,35 @@
                   <img
                     src="./assets/images/5.jpg"
                     alt="Prato Nordestino 5"
-                    class="img-fluid" />
+                    class="img-fluid gallery-image-clickable" />
                 </div>
               </div>
             </div>
+
+            <div class="swiper-button-prev" aria-label="Imagem anterior">
+              <i class="bi bi-chevron-left"></i>
+            </div>
+            <div class="swiper-button-next" aria-label="Próxima imagem">
+              <i class="bi bi-chevron-right"></i>
+            </div>
             <div class="swiper-pagination"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
           </div>
         </div>
       </section>
 
+      <!-- NUTRITION -->
       <section id="nutrition" class="py-5 bg-light">
         <div class="container py-5">
           <h2 class="text-center mb-5 fw-bold display-5">Dicas Nutricionais</h2>
           <div class="row">
             <div class="col-lg-8 mx-auto">
-              <div class="card border-0 shadow mb-4">
-                <div class="card-body p-4">
-                  <h3 class="h4 mb-3">
-                    Alimentação Saudável no Ambiente de Trabalho
-                  </h3>
-                  <p class="mb-0">
-                    Uma alimentação balanceada é essencial para manter a energia
-                    e produtividade durante o dia de trabalho. Nossas refeições
-                    são preparadas com ingredientes frescos e seguem as
-                    diretrizes nutricionais para oferecer o melhor para sua
-                    equipe.
-                  </p>
-                </div>
-              </div>
-
-              <div class="row" id="nutrition-tips"></div>
+              <div id="nutrition-tips-container" class="row g-4"></div>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- TESTIMONIALS -->
       <section id="testimonials" class="py-5">
         <div class="container py-5">
           <h2 class="text-center mb-5 fw-bold display-5">
@@ -325,6 +299,7 @@
         </div>
       </section>
 
+      <!-- CONTACT -->
       <section id="contact" class="py-5" style="background-color: #ffe8b4">
         <div class="container py-5">
           <h2 class="text-center mb-5 fw-bold display-5">
@@ -407,10 +382,11 @@
       </section>
     </main>
 
+    <!-- FOOTER -->
     <footer class="bg-dark text-white py-5">
       <div class="container">
-        <div class="row">
-          <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
             <h3 class="h4 mb-3">Contato</h3>
             <p class="footer-contact-item">
               <i class="fas fa-phone me-2"></i> (81) 9 9648-2736
@@ -423,12 +399,12 @@
               <i class="fas fa-map-marker-alt me-2"></i> Recife, PE
             </p>
           </div>
-          <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+          <div class="col-md-6 col-lg-3">
             <h3 class="h4 mb-3">Horário de Atendimento</h3>
             <p>Segunda a Sexta: 7h às 18h</p>
             <p>Sábado: 8h às 12h</p>
           </div>
-          <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+          <div class="col-md-6 col-lg-3">
             <h3 class="h4 mb-3">Informações</h3>
             <p>CNPJ: 12.345.678/0001-90</p>
             <p class="mb-1">
@@ -470,52 +446,61 @@
           </div>
           <div class="col-md-6 col-lg-3">
             <h3 class="h4 mb-3">Redes Sociais</h3>
-            <div class="d-flex gap-3">
-              <a href="#" class="text-white fs-4"
-                ><i class="fab fa-facebook"></i
-              ></a>
-              <a href="#" class="text-white fs-4"
-                ><i class="fab fa-instagram"></i
-              ></a>
-              <a href="#" class="text-white fs-4"
-                ><i class="fab fa-whatsapp"></i
-              ></a>
-            </div>
+            <a href="#" class="social-icon" aria-label="WhatsApp"
+              ><i class="fab fa-whatsapp"></i
+            ></a>
+            <a href="#" class="social-icon ms-2" aria-label="Instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" class="social-icon ms-2" aria-label="Facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
           </div>
         </div>
-        <hr class="my-4 bg-light" />
-        <div class="text-center">
+        <div class="text-center border-top pt-4 mt-4">
           <p class="mb-0">
-            &copy; 2025 Nordestina Refeições. Todos os direitos reservados.
+            &copy; 2024 Nordestina Refeições. Todos os direitos reservados.
           </p>
         </div>
       </div>
     </footer>
 
-    <div class="welcome-bubble" id="welcomeBubble">
-      <button class="close-bubble" id="closeBubble">&times;</button>
-      <p>Olá! Bem-vindo à Nordestina Refeições. Como podemos ajudar?</p>
-    </div>
-
+    <!-- Botão flutuante WhatsApp -->
     <a
-      href="https://wa.me/5581996482736?text=Olá! Gostaria de solicitar um orçamento."
+      href="https://wa.me/5581996482736"
       class="whatsapp-float"
       target="_blank"
-      aria-label="Fale conosco pelo WhatsApp">
+      aria-label="WhatsApp">
       <i class="fab fa-whatsapp"></i>
     </a>
 
+    <!-- Balão do WhatsApp -->
+    <div class="whatsapp-bubble" id="whatsappBubble">
+      <p>Converse conosco no WhatsApp!</p>
+      <button class="close-bubble" id="closeWhatsappBubble">&times;</button>
+    </div>
+
+    <!-- WELCOME BUBBLE -->
+    <div id="welcomeBubble" class="welcome-bubble">
+      <button class="close-bubble" id="closeBubble">&times;</button>
+      <p>
+        Bem-vindo à Nordestina Refeições! Conecte-se conosco no WhatsApp para
+        saber mais.
+      </p>
+    </div>
+
+    <!-- MODAIS (Reviews / Form / All Reviews) -->
     <div
       class="modal fade"
-      id="confirmationModal"
+      id="allReviewsModal"
       tabindex="-1"
-      aria-labelledby="confirmationModalLabel"
+      aria-labelledby="allReviewsModalLabel"
       aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="confirmationModalLabel">
-              Confirmar envio
+            <h5 class="modal-title" id="allReviewsModalLabel">
+              Todas as Avaliações
             </h5>
             <button
               type="button"
@@ -524,21 +509,7 @@
               aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <p>Deseja enviar sua solicitação de orçamento?</p>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal">
-              Cancelar
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary-custom"
-              id="confirmSend">
-              Sim, enviar
-            </button>
+            <div id="all-reviews-container" class="row g-4"></div>
           </div>
         </div>
       </div>
@@ -574,52 +545,54 @@
               </div>
               <div class="mb-3">
                 <label for="reviewerCompany" class="form-label"
-                  >Empresa (opcional)</label
+                  >Sua Empresa (Opcional)</label
                 >
                 <input type="text" class="form-control" id="reviewerCompany" />
               </div>
               <div class="mb-3">
-                <label class="form-label">Avaliação</label>
-                <div class="rating-input mb-3">
+                <label class="form-label d-block">Sua Avaliação</label>
+                <span class="rating-input">
                   <span class="star" data-value="1">☆</span>
                   <span class="star" data-value="2">☆</span>
                   <span class="star" data-value="3">☆</span>
                   <span class="star" data-value="4">☆</span>
                   <span class="star" data-value="5">☆</span>
-                </div>
-                <input type="hidden" id="ratingValue" value="0" required />
+                </span>
+                <input type="hidden" id="ratingValue" name="rating" value="0" />
               </div>
               <div class="mb-3">
                 <label for="reviewMessage" class="form-label"
-                  >Sua Opinião</label
+                  >Sua Mensagem</label
                 >
                 <textarea
                   class="form-control"
                   id="reviewMessage"
-                  rows="4"
+                  rows="3"
                   required></textarea>
               </div>
-              <button type="submit" class="btn btn-primary-custom w-100">
-                Enviar Avaliação
-              </button>
+              <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary-custom">
+                  Enviar Avaliação
+                </button>
+              </div>
             </form>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- CONFIRMATION MODAL -->
     <div
       class="modal fade"
-      id="allReviewsModal"
+      id="confirmationModal"
       tabindex="-1"
-      aria-labelledby="allReviewsModalLabel"
+      aria-labelledby="confirmationModalLabel"
       aria-hidden="true">
-      <div
-        class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="allReviewsModalLabel">
-              Todas as Avaliações
+            <h5 class="modal-title" id="confirmationModalLabel">
+              Solicitação Enviada
             </h5>
             <button
               type="button"
@@ -627,208 +600,34 @@
               data-bs-dismiss="modal"
               aria-label="Close"></button>
           </div>
-          <div class="modal-body" id="all-reviews-container"></div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="modal fade"
-      id="careersModal"
-      tabindex="-1"
-      aria-labelledby="careersModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="careersModalLabel">Trabalhe Conosco</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <p>Junte-se à nossa equipe! Envie seu currículo para:</p>
-            <p class="fw-bold">contato@nordestinarefeicao.com.br</p>
-            <p>Assunto: Candidatura - [Seu Nome]</p>
+          <div class="modal-body text-center">
+            <i
+              class="fas fa-check-circle fa-4x text-primary-custom mb-3"
+              style="color: var(--primary-color)"></i>
             <p>
-              Analisaremos seu currículo e entraremos em contato caso haja
-              oportunidades compatíveis com seu perfil.
+              Obrigado! Sua solicitação de orçamento foi enviada com sucesso.
+              Entraremos em contato em breve.
             </p>
           </div>
         </div>
       </div>
     </div>
 
-    <div
-      class="modal fade"
-      id="termsModal"
-      tabindex="-1"
-      aria-labelledby="termsModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="termsModalLabel">Termos de Uso</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <h6>1. Aceitação dos Termos</h6>
-            <p>
-              Ao acessar e usar o site da Nordestina Refeições, você concorda
-              com estes Termos de Uso.
-            </p>
-
-            <h6>2. Serviços Oferecidos</h6>
-            <p>
-              Nossa empresa oferece serviços de alimentação para construção
-              civil e empresas.
-            </p>
-
-            <h6>3. Propriedade Intelectual</h6>
-            <p>
-              Todo o conteúdo do site é propriedade da Nordestina Refeições e
-              protegido por leis de direitos autorais.
-            </p>
-
-            <h6>4. Limitação de Responsabilidade</h6>
-            <p>
-              Não nos responsabilizamos por danos diretos ou indiretos
-              resultantes do uso dos serviços.
-            </p>
-
-            <h6>5. Alterações nos Termos</h6>
-            <p>
-              Podemos alterar estes termos a qualquer momento, com aviso prévio
-              aos usuários.
-            </p>
-          </div>
-        </div>
-      </div>
+    <!-- LIGHTBOX -->
+    <div id="lightboxModal" class="lightbox">
+      <span class="close-lightbox">&times;</span>
+      <img class="lightbox-content" id="lightboxImage" />
+      <div id="lightboxCaption" class="lightbox-caption"></div>
     </div>
 
-    <div
-      class="modal fade"
-      id="privacyModal"
-      tabindex="-1"
-      aria-labelledby="privacyModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="privacyModalLabel">
-              Notificação de Privacidade
-            </h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <h6>1. Coleta de Informações</h6>
-            <p>
-              Coletamos informações pessoais fornecidas voluntariamente pelos
-              usuários através de formulários de contato.
-            </p>
-
-            <h6>2. Uso das Informações</h6>
-            <p>
-              Utilizamos as informações para fornecer nossos serviços, processar
-              pedidos e melhorar a experiência do usuário.
-            </p>
-
-            <h6>3. Compartilhamento de Dados</h6>
-            <p>
-              Não compartilhamos informações pessoais com terceiros, exceto
-              quando necessário para prestação de serviços.
-            </p>
-
-            <h6>4. Segurança</h6>
-            <p>
-              Implementamos medidas de segurança para proteger as informações
-              dos usuários contra acesso não autorizado.
-            </p>
-
-            <h6>5. Direitos do Usuário</h6>
-            <p>
-              Os usuários têm direito a acessar, corrigir ou excluir suas
-              informações pessoais a qualquer momento.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="modal fade"
-      id="cookiesModal"
-      tabindex="-1"
-      aria-labelledby="cookiesModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="cookiesModalLabel">
-              Política de Cookies
-            </h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <h6>1. O que são Cookies</h6>
-            <p>
-              Cookies são pequenos arquivos de texto armazenados no seu
-              dispositivo quando você visita nosso site.
-            </p>
-
-            <h6>2. Tipos de Cookies que Utilizamos</h6>
-            <ul>
-              <li>
-                Cookies essenciais: necessários para o funcionamento do site
-              </li>
-              <li>
-                Cookies de desempenho: coletam informações sobre como os
-                visitantes usam o site
-              </li>
-              <li>Cookies de funcionalidade: lembram escolhas que você fez</li>
-            </ul>
-
-            <h6>3. Controle de Cookies</h6>
-            <p>
-              Você pode controlar e/ou excluir cookies como desejar através das
-              configurações do seu navegador.
-            </p>
-
-            <h6>4. Alterações na Política de Cookies</h6>
-            <p>
-              Podemos atualizar esta política periodicamente. Alterações
-              significativas serão notificadas em nosso site.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <!-- SCRIPTS (bootstrap, swiper, cookieconsent e seu script) -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"
-      data-cfasync="false"></script>
-
+    <!-- Seu JS local (coloque script.js na mesma pasta que o index.html) -->
     <script src="./src/javascript/script.js"></script>
   </body>
 </html>

@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-nordestina}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-nordestina_pass}
+      POSTGRES_DB: ${POSTGRES_DB:-nordestina_db}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  app:
+    build: .
+    restart: always
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=${POSTGRES_USER:-nordestina}
+      - DB_PASS=${POSTGRES_PASSWORD:-nordestina_pass}
+      - DB_NAME=${POSTGRES_DB:-nordestina_db}
+      - JWT_SECRET=${JWT_SECRET:-secret_dev_key}
+      - SMTP_HOST=${SMTP_HOST:-}
+      - SMTP_PORT=${SMTP_PORT:-}
+      - SMTP_USER=${SMTP_USER:-}
+      - SMTP_PASS=${SMTP_PASS:-}
+    depends_on:
+      - db
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./:/usr/src/app
+    command: sh -c "npm install && npm run migrate && npm run dev"
+
+volumes:
+  db_data:
