@@ -309,7 +309,15 @@
             <div class="col-lg-10">
               <div class="card shadow border-0">
                 <div class="card-body p-4 p-md-5">
-                  <form id="budgetForm">
+                  <form
+                    id="budgetForm"
+                    action="https://formspree.io/f/mvgblvvg"
+                    method="POST"
+                    data-form-success="true">
+                    <input
+                      type="hidden"
+                      name="_next"
+                      value="https://glaucionsousa.github.io/site-nordestina/" />
                     <div class="row">
                       <div class="col-md-6 mb-3">
                         <label for="name" class="form-label">Nome</label>
@@ -317,6 +325,7 @@
                           type="text"
                           class="form-control"
                           id="name"
+                          name="Nome"
                           required />
                       </div>
                       <div class="col-md-6 mb-3">
@@ -325,6 +334,7 @@
                           type="text"
                           class="form-control"
                           id="company"
+                          name="Empresa"
                           required />
                       </div>
                     </div>
@@ -337,6 +347,7 @@
                           type="tel"
                           class="form-control"
                           id="phone"
+                          name="Telefone"
                           required />
                       </div>
                       <div class="col-md-6 mb-3">
@@ -345,6 +356,7 @@
                           type="email"
                           class="form-control"
                           id="email"
+                          name="Email"
                           required />
                       </div>
                     </div>
@@ -356,6 +368,7 @@
                         type="number"
                         class="form-control"
                         id="people"
+                        name="Pessoas"
                         required />
                     </div>
                     <div class="mb-4">
@@ -363,6 +376,7 @@
                       <textarea
                         class="form-control"
                         id="message"
+                        name="Mensagem"
                         rows="4"
                         required></textarea>
                     </div>
@@ -389,11 +403,11 @@
           <div class="col-md-6 col-lg-3">
             <h3 class="h4 mb-3">Contato</h3>
             <p class="footer-contact-item">
-              <i class="fas fa-phone me-2"></i> (81) 9 9648-2736
+              <i class="fas fa-phone me-2"></i> +55 (61) 9 9195-9995
             </p>
             <p class="footer-contact-item">
               <i class="fas fa-envelope me-2"></i>
-              contato@nordestinarefeicao.com.br
+              nordestina.refeicoesltda@gmail.com
             </p>
             <p class="footer-contact-item">
               <i class="fas fa-map-marker-alt me-2"></i> Recife, PE
@@ -446,7 +460,10 @@
           </div>
           <div class="col-md-6 col-lg-3">
             <h3 class="h4 mb-3">Redes Sociais</h3>
-            <a href="#" class="social-icon" aria-label="WhatsApp"
+            <a
+              href="https://wa.me/5561991959995"
+              class="social-icon"
+              aria-label="WhatsApp"
               ><i class="fab fa-whatsapp"></i
             ></a>
             <a href="#" class="social-icon ms-2" aria-label="Instagram"
@@ -467,7 +484,7 @@
 
     <!-- Botão flutuante WhatsApp -->
     <a
-      href="https://wa.me/5581996482736"
+      href="https://wa.me/5561991959995"
       class="whatsapp-float"
       target="_blank"
       aria-label="WhatsApp">

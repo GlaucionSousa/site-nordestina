@@ -18,12 +18,18 @@ body {
   background-color: var(--secondary-color);
   padding-top: 76px; /* Altura reduzida da navbar fixa */
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 /* Navbar com altura reduzida */
 .navbar {
   transition: all 0.3s ease;
   padding: 0.5rem 0;
+}
+
+/* Sobrescreve a cor de fundo da navbar sem alterar o HTML */
+.navbar.bg-white {
+  background-color: #e6e5e5 !important;
 }
 
 .navbar-brand img {

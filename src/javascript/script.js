@@ -298,7 +298,7 @@ $(document).ready(function () {
     });
   });
 
-  // Formulário de orçamento
+  /*  // Formulário de orçamento
   $("#budgetForm").on("submit", function (e) {
     e.preventDefault();
     // Mostrar modal de confirmação do Bootstrap
@@ -341,6 +341,15 @@ $(document).ready(function () {
     setTimeout(function () {
       messageDiv.fadeOut();
     }, 5000);
+  }
+*/
+  // Adicione este trecho em qualquer lugar do seu arquivo script.js, fora do $(document).ready
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get("success")) {
+    showFormMessage(
+      "Solicitação enviada com sucesso! Entraremos em contato em breve.",
+      "success"
+    );
   }
 
   // Lista completa de Dicas Nutricionais
@@ -560,4 +569,7 @@ $(document).ready(function () {
       800
     );
   });
+
+  // Limpa o formulário ao carregar a página
+  $("#budgetForm")[0].reset();
 });
